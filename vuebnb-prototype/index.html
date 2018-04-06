@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Vuebnb</title>
   <link rel="stylesheet" href="node_modules/open-sans-all/css/open-sans.css">
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
@@ -15,7 +16,12 @@
   </div>
   <div id="app">
     <div class="header">
-      <div class="header-img"></div>
+      <div 
+        class="header-img" 
+        :style="headerImageStyle"
+        @click="modalOpen = true">
+        <button class="view-photos">View photos</button>
+      </div>
     </div>
     <div class="container">
       <div class="heading">
@@ -25,7 +31,36 @@
       <hr>
       <div class="about">
         <h3>About this listing</h3>
-        <p>{{ about }}</p>
+        <p :class="{ contracted: contracted }">{{ about }}</p>
+        <button v-if="contracted" class="more" @click="contracted = false">+ More</button>
+        <button v-else class="more" @click="contracted = true">- Hide</button>
+      </div>
+      <div class="lists">
+        <hr>
+        <div class="amenities list">
+          <div class="title"><strong>Amenities</strong></div>
+          <div class="content">
+            <div class="list-item" v-for="amenity in amenities">
+              <i class="fa fa-lg" :class="amenity.icon"></i>
+              <span>{{ amenity.title }}</span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="prices list">
+          <div class="title"><strong>Prices</strong></div>
+          <div class="content">
+            <div class="list-item" v-for="price in prices">
+              {{ price.title }}: <strong>{{ price.value }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="modal" :class="{ show : modalOpen }">
+      <button @click="modalOpen = false" class="modal-close">&times;</button>
+      <div class="modal-content">
+        <img src="sample/header.jpg" >
       </div>
     </div>
   </div>

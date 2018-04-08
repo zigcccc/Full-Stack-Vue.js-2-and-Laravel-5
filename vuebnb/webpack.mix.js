@@ -22,6 +22,9 @@ mix
 		],
 		'public/css/style.css'
 	)
+	.options({
+		extractVueStyles: 'public/css/vue-style.css'
+	})
 	.copy('resources/assets/images', 'public/images')
 	.copy('node_modules/open-sans-all/fonts', 'public/fonts')
 	.copy('node_modules/font-awesome/fonts', 'public/fonts')

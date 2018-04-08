@@ -17,14 +17,10 @@
     <h1>vuebnb</h1>
   </div>
   <div id="app">
-    <div class="header">
-      <div 
-        class="header-img" 
-        :style="headerImageStyle"
-        @click="modalOpen = true">
-        <button class="view-photos">View photos</button>
-      </div>
-    </div>
+    <header-image 
+      :image-url="images[0]" 
+      @header-clicked="openModal">
+    </header-image>
     <div class="container">
       <div class="heading">
         <h1>@{{ title }}</h1>
@@ -38,28 +34,20 @@
         <button v-else class="more" @click="contracted = true">- Hide</button>
       </div>
       <div class="lists">
-        <hr>
-        <div class="amenities list">
-          <div class="title"><strong>Amenities</strong></div>
-          <div class="content">
-            <div class="list-item" v-for="amenity in amenities">
-              <i class="fa fa-lg" :class="amenity.icon"></i>
-              <span>@{{ amenity.title }}</span>
-            </div>
+        <feature-list title="Amenities">
+          <div class="list-item" v-for="amenity in amenities">
+            <i class="fa fa-lg" :class="amenity.icon"></i>
+            <span>@{{ amenity.title }}</span>
           </div>
-        </div>
-        <hr>
-        <div class="prices list">
-          <div class="title"><strong>Prices</strong></div>
-          <div class="content">
-            <div class="list-item" v-for="price in prices">
-              @{{ price.title }}: <strong>@{{ price.value }}</strong>
-            </div>
+        </feature-list>
+        <feature-list title="Prices">
+          <div class="list-item" v-for="price in prices">
+            @{{ price.title }}: <strong>@{{ price.value }}</strong>
           </div>
-        </div>
+        </feature-list>
       </div>
     </div>
-    <modal-window>
+    <modal-window ref="imagemodal">
       <image-carousel :images="images" />
     </modal-window>
   </div>

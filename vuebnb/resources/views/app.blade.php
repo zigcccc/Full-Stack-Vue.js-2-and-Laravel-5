@@ -59,12 +59,9 @@
         </div>
       </div>
     </div>
-    <div id="modal" :class="{ show : modalOpen }">
-      <button @click="modalOpen = false" class="modal-close">&times;</button>
-      <div class="modal-content">
-        <image-carousel :images="images" />
-      </div>
-    </div>
+    <modal-window>
+      <image-carousel :images="images" />
+    </modal-window>
   </div>
   <script src="{{ asset('js/app.js') }}"></script>
 </body>

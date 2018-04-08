@@ -53,29 +53,6 @@ body {
   color: #767676;
 }
 
-hr {
-  border: 0;
-  border-top: 1px solid #dce0e0;
-}
-
-.about {
-  margin-top: 2em;
-}
-
-.about h3 {
-  font-size: 22px;
-}
-
-.about p {
-  white-space: pre-wrap;
-}
-
-.about p.contracted {
-  white-space: pre-wrap;
-  height: 250px;
-  overflow: hidden;
-}
-
 button {
   text-align: center;
   vertical-align: middle;
@@ -84,24 +61,6 @@ button {
   cursor: pointer;
   display: inline-block;
   margin-bottom: 0;
-}
-
-.about button.more {
-  background: transparent;
-  border: 0;
-  color: #008489;
-  padding: 0;
-  font-size: 17px;
-  font-weight: 700;
-  width: 100%;
-  text-align: center;
-}
-
-.about button.more:hover,
-.about button.more:active,
-.about button.more:focus {
-  text-decoration: underline;
-  outline: none;
 }
 
 body.modal-open {

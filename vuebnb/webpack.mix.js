@@ -31,4 +31,11 @@ mix
 	.browserSync({
 		proxy: process.env.APP_URL,
 		open: false
+	})
+	.webpackConfig({
+		resolve: {
+			alias: {
+				vue$: 'vue/dist/vue.runtime.esm.js'
+			}
+		}
 	});

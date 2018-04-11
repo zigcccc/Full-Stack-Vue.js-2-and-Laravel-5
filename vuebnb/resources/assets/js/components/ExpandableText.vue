@@ -27,6 +27,18 @@ export default {
 	white-space: pre-wrap;
 	height: 250px;
 	overflow: hidden;
+	position: relative;
+}
+
+.about p.contracted::after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 40px;
+	background: linear-gradient(to bottom,  rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+	position: absolute;
+	top: 250px;
+	transform: translateY(-100%);
 }
 
 .about button.more {

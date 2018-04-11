@@ -7,27 +7,61 @@ use App\Listing;
 
 class ListingController extends Controller
 {
-    private function add_image_urls($model, $id)
+    private function get_listing($listing)
     {
-        for ($i = 1; $i <= 4; $i++) {
+        $model = $listing->toArray();
+        for ($i = 1; $i < 4; $i++) {
             $model['image_' . $i] = asset(
-                'images/' . $id . '/Image_' . $i . '.jpg'
+                'images/' . $listing->id . '/Image_' . $i . '.jpg'
             );
         }
-        return $model;
+        return collect(['listing' => $model]);
+    }
+
+    private function get_listing_sumarries()
+    {
+        $collection = Listing::all([
+            'id', 'address', 'title', 'price_per_night'
+        ]);
+        $collection->transform(function($listing){
+            $listing->thumb = asset(
+                'images/' . $listing->id . '/Image_1_thumb.jpg' 
+            );
+            return $listing;
+        });
+        return collect(['listings' => $collection->toArray()]);
+    }
+
+    private function add_meta_data($collection, $request)
+    {
+        return $collection->merge([
+            'path' => $request->getPathInfo()
+        ]);
+    }
+
+    public function get_home_api()
+    {
+        $data = $this -> get_listing_sumarries();
+        return response()->json($data);
+    }
+
+    public function get_home_web(Request $request) {
+        
+        $data = $this -> get_listing_sumarries();
+        $data = $this -> add_meta_data($data, $request);
+        return view('app', ['data' => $data]);
     }
 
     public function get_listing_api(Listing $listing)
     {
-        $model = $listing->toArray();
-        $model = $this->add_image_urls($model, $listing->id);
-        return response()->json($model);
+        $data = $this -> get_listing($listing);
+        return response()->json($data);
     }
 
-    public function get_listing_web(Listing $listing)
+    public function get_listing_web(Listing $listing, Request $request)
     {
-        $model = $listing->toArray();
-        $model = $this->add_image_urls($model, $listing->id);
-        return view('app', ['model' => $model]);
+        $data = $this -> get_listing($listing);
+        $data = $this -> add_meta_data($data, $request);
+        return view('app', ['data' => $data]);
     }
 }

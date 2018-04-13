@@ -10,12 +10,16 @@
         <div class="info address">{{ listing.address }}</div>
       </div>
     </router-link>
+		<listing-save :id="listing.id" :button="false" />
   </div>
 </template>
 
 <script>
+import ListingSave from './ListingSave';
+
 export default {
 	props: ['listing'],
+	components: { ListingSave },
 	computed: {
 		backgroundImageStyle() {
 			return {
@@ -29,6 +33,7 @@ export default {
 <style scoped>
 .listing-summary {
 	flex: 0 0 auto;
+	position: relative;
 }
 .listing-summary a {
 	text-decoration: none;
@@ -60,5 +65,11 @@ export default {
 .info.address {
 	font-size: 0.85rem;
 	line-height: 18px;
+}
+@media screen and (max-width: 400px) {
+	.listing-summary .listing-save {
+		left: 15px;
+		right: auto;
+	}
 }
 </style>

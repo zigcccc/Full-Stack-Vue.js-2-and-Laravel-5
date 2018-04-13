@@ -3,15 +3,20 @@
   <div 
     class="header-img" 
     :style="headerImageStyle"
-    @click="$emit('header-clicked')">
+    @click="$emit('header-clicked')"
+	>
+		<listing-save :id="id" :button="true" />
     <button class="view-photos">View photos</button>
   </div>
 </div>
 </template>
 
 <script>
+import ListingSave from './ListingSave';
+
 export default {
-	props: ['image-url'],
+	props: ['image-url', 'id'],
+	components: { ListingSave },
 	computed: {
 		headerImageStyle() {
 			return {

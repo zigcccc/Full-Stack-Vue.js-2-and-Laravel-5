@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 let store = new Vuex.Store({
 	state: {
-		saved: [5, 10],
+		saved: [1, 15, 22],
 		listings: [],
 		listing_summaries: []
 	},

@@ -1,6 +1,6 @@
 <template>
   <div class="listing-summary-group">
-    <h1>Places in {{ country }}</h1>
+    <h2>Places in {{ country }}</h2>
     <div class="listing-carousel">
       <div class="controls">
         <carousel-control :style="leftArrow" dir="left" @change-image="change" />
@@ -69,6 +69,9 @@ export default {
 <style scoped>
 .listing-summary-group {
 	padding-bottom: 20px;
+}
+.listing-summary-group h2 {
+	font-size: 2em;
 }
 .listing-summaries {
 	display: flex;

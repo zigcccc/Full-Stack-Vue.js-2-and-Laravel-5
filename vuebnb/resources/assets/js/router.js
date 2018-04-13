@@ -5,6 +5,7 @@ import store from './store';
 
 import HomePage from './components/HomePage';
 import ListingPage from './components/ListingPage';
+import SavedPage from './components/SavedPage';
 
 Vue.use(VueRouter);
 
@@ -15,7 +16,8 @@ const router = new VueRouter({
 	},
 	routes: [
 		{ path: '/', component: HomePage, name: 'home' },
-		{ path: '/listing/:listing', component: ListingPage, name: 'listing' }
+		{ path: '/listing/:listing', component: ListingPage, name: 'listing' },
+		{ path: '/saved', component: SavedPage, name: 'saved' }
 	]
 });
 

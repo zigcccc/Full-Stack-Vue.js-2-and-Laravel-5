@@ -35,6 +35,17 @@ body {
   }
 }
 
+.login-container {
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+@media screen and (min-width: 374px) {
+  .login-container {
+    width: 350px;
+  }
+}
+
 #toolbar {
   display: flex;
   align-items: center;
@@ -87,4 +98,8 @@ body.modal-open {
   overflow: hidden;
   position: fixed;
   width: 100%;
+}
+
+input[type=text] {
+  -webkit-appearance: none;
 }

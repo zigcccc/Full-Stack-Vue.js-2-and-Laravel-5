@@ -1,5 +1,5 @@
 <template>
-  <div id="saved" class="home-container">
+  <div id="saved" class="saved-container">
     <h2>Saved listings</h2>
     <div v-if="listings.length" class="listing-summaries">
       <listing-summary 

@@ -11,7 +11,8 @@ let store = new Vuex.Store({
 		saved: [],
 		listings: [],
 		listing_summaries: [],
-		auth: false
+		auth: false,
+		user: null
 	},
 	mutations: {
 		toggleSaved(state, id) {
@@ -22,9 +23,15 @@ let store = new Vuex.Store({
 				state.saved.splice(index, 1);
 			}
 		},
+		deleteListing(state, id) {
+			state.listing_summaries = state.listing_summaries.filter(item => {
+				return item.id !== id;
+			});
+		},
 		addData(state, { route, data }) {
 			if (data.auth) {
 				state.auth = data.auth;
+				state.user = data.user;
 			}
 			if (route === 'listing') {
 				state.listings.push(data.listing);

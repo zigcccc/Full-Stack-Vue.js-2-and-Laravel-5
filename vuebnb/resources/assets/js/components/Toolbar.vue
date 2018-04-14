@@ -8,11 +8,14 @@
       <li v-if="$store.state.auth">
         <router-link :to="{name: 'saved'}">Saved</router-link>
       </li>
+			<li v-if="$store.state.auth">
+				<router-link :to="{name: 'dashboard'}">Dashboard</router-link>
+			</li>
 			<li v-if="!$store.state.auth">
         <router-link :to="{name: 'login'}">Login</router-link>
       </li>
 			<li v-else>
-				<a @click="logout">Logout</a>
+				<a @click="logout">Logout, {{ getFirstName }}</a>
 				<form
 					style="display: hidden"
 					action="/logout"
@@ -33,6 +36,14 @@ export default {
 			csrf_token: window.csrf_token
 		};
 	},
+	computed: {
+		getFirstName(){
+			if (this.$store.state.user) {
+				let fullname = this.$store.state.user.name;
+				return fullname.split(' ')[0];
+			}
+		}
+	},
 	methods: {
 		logout() {
 			document.getElementById('logout').submit();
@@ -43,10 +54,16 @@ export default {
 
 <style scoped>
 #toolbar {
+	background-color: white;
 	border-bottom: 1px solid #e4e4e4;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 	display: flex;
 	justify-content: space-between;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000000;
 }
 
 #toolbar a {

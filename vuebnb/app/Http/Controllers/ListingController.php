@@ -38,7 +38,8 @@ class ListingController extends Controller
         return $collection->merge([
             'path' => $request->getPathInfo(),
             'auth' => Auth::check(),
-            'saved' => Auth::check() ? Auth::user()->saved : []
+            'saved' => Auth::check() ? Auth::user()->saved : [],
+            'user' => Auth::check() ? ['name' => Auth::user() -> name, 'email' => Auth::user() -> email] : []
         ]);
     }
 

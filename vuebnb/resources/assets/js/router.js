@@ -7,6 +7,7 @@ import HomePage from './components/HomePage';
 import ListingPage from './components/ListingPage';
 import SavedPage from './components/SavedPage';
 import LoginPage from './components/LoginPage';
+import AdminPage from './components/AdminPage';
 
 Vue.use(VueRouter);
 
@@ -19,7 +20,8 @@ const router = new VueRouter({
 		{ path: '/', component: HomePage, name: 'home' },
 		{ path: '/listing/:listing', component: ListingPage, name: 'listing' },
 		{ path: '/saved', component: SavedPage, name: 'saved' },
-		{ path: '/login', component: LoginPage, name: 'login' }
+		{ path: '/login', component: LoginPage, name: 'login' },
+		{ path: '/dashboard', component: AdminPage, name: 'dashboard' }
 	]
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use App\Listing;
 
@@ -54,6 +55,13 @@ class ListingController extends Controller
         $data = $this -> get_listing_sumarries();
         $data = $this -> add_meta_data($data, $request);
         return view('app', ['data' => $data]);
+    }
+
+    public function delete_listing(Listing $listing)
+    {
+        $item = $listing->toArray();
+        //$listing->delete();
+        return response()->json(['message' => 'Item #' . $item['id'] . ' was deleted from the database.']);
     }
 
     public function get_listing_api(Listing $listing)

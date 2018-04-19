@@ -12,7 +12,8 @@ let store = new Vuex.Store({
 		listings: [],
 		listing_summaries: [],
 		auth: false,
-		user: null
+		user: null,
+		successMessage: null
 	},
 	mutations: {
 		toggleSaved(state, id) {
@@ -38,6 +39,9 @@ let store = new Vuex.Store({
 			} else {
 				state.listing_summaries = data.listings;
 			}
+		},
+		clearSuccessMessage(state) {
+			state.successMessage = null;
 		}
 	},
 	actions: {
@@ -46,6 +50,21 @@ let store = new Vuex.Store({
 				axios.post('/api/user/toggle_saved', { id }).then(() => {
 					commit('toggleSaved', id);
 				});
+			} else {
+				router.push('/login');
+			}
+		},
+		deleteListing({ commit, state }, id) {
+			if (state.auth) {
+				axios
+					.delete(`/api/listing/${id}/delete`)
+					.then(data => {
+						state.successMessage = data.data.message;
+						commit('deleteListing', id);
+					})
+					.catch(err => {
+						console.error(err);
+					});
 			} else {
 				router.push('/login');
 			}

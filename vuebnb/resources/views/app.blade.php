@@ -10,6 +10,7 @@
   <script type="text/javascript">
     window.vuebnb_server_data = "{!! addslashes(json_encode($data)) !!}";
     window.csrf_token = "{{ csrf_token() }}";
+    window.flash = "{{ Session::get('message') }}";
   </script>
 </head>
 <body>

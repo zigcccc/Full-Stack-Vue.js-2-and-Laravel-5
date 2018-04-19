@@ -2,8 +2,8 @@
   <div class="listing-row">
     <h3>{{ listing.title }}</h3>
     <div class="listing-controls">
-      <button id="edit-listing" @click="editListing(listing.id)"><i class="fa fa-lg fa-edit"></i></button>
-      <button id="delete-listing" @click="deleteListing(listing.id)"><i class="fa fa-lg fa-trash"></i></button>
+      <button class="edit-listing" @click="editListing(listing.id)"><i class="fa fa-lg fa-edit"></i></button>
+      <button class="delete-listing" @click="deleteListing(listing.id)"><i class="fa fa-lg fa-trash"></i></button>
     </div>
   </div>
 </template>
@@ -13,8 +13,7 @@ export default {
 	props: ['listing'],
 	methods: {
 		deleteListing(id) {
-			console.log(id);
-			this.$store.commit('deleteListing', id);
+			this.$store.dispatch('deleteListing', id);
 		}
 	}
 };
@@ -56,6 +55,6 @@ export default {
     padding: .25rem
     font-size: .75rem
     margin: 0 5px
-    &#delete-listing
-      color: #E53935
+    &.delete-listing
+      color: #D32F2F
 </style>
